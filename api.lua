@@ -362,9 +362,15 @@ function api.color(c)
 end
 
 -- workaround for non printable chars
-local tostring_org = tostring
-local function tostring(str)
-	return tostring_org(str):gsub("[^%z\32-\127]", "8")
+-- local tostring_org = tostring --x2nie
+-- local function tostring(str)
+local function fontstr(str)
+	-- return tostring_org(str):gsub("[^%z\32-\127]", "8")
+	local sub = {}
+	sub["\151"] = '❎' --"\0x8E"
+	sub["\142"] = '🅾' --'/151/' --"\0x97"
+	-- return tostring_org(str):gsub("[^\32-\127]", sub)
+	return tostring(str):gsub("[^\32-\127]", sub)
 end
 
 function api.print(str, x, y, col)
@@ -388,9 +394,14 @@ function api.print(str, x, y, col)
 		api.color(c)
 		api.cursor(0, y + 6)
 	end
-	local to_print = tostring(str):gsub("[^%z\32-\127]", " ")
+	-- local to_print = tostring(str):gsub("[^%z\32-\127]", " ") --x2nie
+	-- love.graphics.setShader(pico8.text_shader)
+	-- love.graphics.print(to_print, flr(x), flr(y))
+	-- log("str",str)
+	-- log("str2",tostring(str))
 	love.graphics.setShader(pico8.text_shader)
-	love.graphics.print(to_print, flr(x), flr(y))
+	-- love.graphics.print(tostring(str), flr(x), flr(y))
+	love.graphics.print(fontstr(tostring(str)), flr(x), flr(y))
 end
 
 api.printh = print
