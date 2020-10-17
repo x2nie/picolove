@@ -370,7 +370,10 @@ local function fontstr(str)
 	sub["\151"] = '❎' --"\0x8E"
 	sub["\142"] = '🅾' --'/151/' --"\0x97"
 	-- return tostring_org(str):gsub("[^\32-\127]", sub)
-	return tostring(str):gsub("[^\32-\127]", sub)
+	-- return tostring(str):gsub("[^\32-\127]", sub)
+	--str = tostring(str) -- assure string
+	--:gsub("[^\32-\127]", sub)
+	return str
 end
 
 function api.print(str, x, y, col)
@@ -1485,7 +1488,16 @@ end
 function api.menuitem()
 end
 
-api.sub = string.sub
+local utf8 = require("utf8")
+-- api.sub = string.sub
+function api.sub(s,i,j)
+	if j == nil then j = i end
+	-- https://stackoverflow.com/questions/43138867/lua-unicode-using-string-sub-with-two-byted-chars
+	local i=utf8.offset(s,i)
+    local j=utf8.offset(s,j+1)-1
+    return string.sub(s,i,j)
+end
+
 api.pairs = pairs
 api.type = type
 api.assert = assert
