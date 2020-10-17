@@ -319,6 +319,7 @@ function love.load(argv)
 	local font = love.graphics.newImageFont("font.png", glyphs, 1)
 	love.graphics.setFont(font)
 	font:setFilter("nearest", "nearest")
+	font:setLineHeight(6.0/8.0)
 
 	love.mouse.setVisible(false)
 	love.keyboard.setKeyRepeat(true)
