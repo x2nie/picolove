@@ -111,7 +111,7 @@ local bits = 16
 
 currentDirectory = "/"
 local glyphs =
-	'abcdefghijklmnopqrstuvwxyz"\'`-_/1234567890!?[](){}.,;:<>+=%#^*~ '.. '█▒🐱⬇░✽●♥☉웃⌂⬅😐♪🅾️◆…➡★⧗⬆️ˇ∧❎▤▥'
+	'abcdefghijklmnopqrstuvwxyz"\'`-_/1234567890!?[](){}.,;:<>+=%#^*~ '.. '█▒🐱⬇░✽●♥☉웃⌂⬅😐♪🅾◆…➡★⧗⬆ˇ∧❎▤▥'
 
 local function _allow_pause(value)
 	if type(value) ~= "boolean" then
